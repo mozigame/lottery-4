@@ -1,0 +1,481 @@
+body, div, span, header, footer, nav, section, aside, article, ul, dl, dt, dd, li, a, p, h1, h2, h3, h4,h5, h6, i, b, textarea, button, input, select, figure, figcaption {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  font-style: normal;
+  text-decoration: none;
+  border: none;
+  box-sizing: border-box;
+  font-family: "Microsoft Yahei",sans-serif;
+  -webkit-tap-highlight-color:transparent;
+  -webkit-font-smoothing: antialiased;
+}
+/*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
+::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+  background-color: #F5F5F5;
+}
+/*定义滚动条轨道 内阴影+圆角*/
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 1px rgba(0,0,0,0);
+  border-radius: 10px;
+  background-color: #F5F5F5;
+}
+/*定义滑块 内阴影+圆角*/
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+  background-color: #555;
+}
+::-webkit-input-placeholder {
+  color: #999999;
+}
+input[type="button"], input[type="submit"], input[type="search"], input[type="reset"] {
+  -webkit-appearance: none;
+}
+input[type="text"]:focus, input[type="number"]:focus, input[type="password"]:focus {
+  outline: none;
+}
+textarea {
+  -webkit-appearance: none;
+}
+html,body{
+  height: 100%;
+  width: 100%;
+  background-color: #f2f2f2;
+  max-width: 640px;
+  margin: 0 auto;
+}
+input[type="text"], input[type="number"], input[type="password"] {
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  background: white;
+  height: 40px;
+  line-height: 38px;
+  padding: 0 10px;
+}
+.btn {
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  font-size: 15px;
+  color: white;
+  background: #e73f40;
+  border-radius: 5px;
+  display: block;
+}
+.btn.btn-out-line {
+  color: #e73f40;
+  background: white;
+  border: 1px solid #ccc;
+}
+.btn.width-45 {
+  width: 45%;
+  display: inline-block;
+}
+.btn.bg-gray {
+  color: white;
+  background: #D6D8D7;
+}
+.btn:active {
+  background: #c80112;
+}
+.btn.btn-out-line:active {
+  background: #cccccc;
+}
+.clear:after{
+  content: '';
+  display: block;
+  clear: both;
+}
+.clear{
+  zoom:1;
+}
+.back_img{
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.margin{
+  margin: 0 auto;
+}
+.pull-left{
+  float: left;
+}
+.pull-right{
+  float: right;
+}
+.hide{
+  display: none;
+}
+.show{
+  display: block;
+}
+.ellipsis{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.relative {
+  position: relative;
+}
+.text-left {
+   text-align: left;
+ }
+.text-center {
+  text-align: center;
+}
+.text-right {
+  text-align: right;
+}
+.margin-top-5 {
+  margin-top: 5px;
+}
+.margin-right-5 {
+  margin-right: 5px;
+}
+.margin-left-5 {
+  margin-left: 5px;
+}
+.margin-top-10 {
+  margin-top: 10px;
+}
+.margin-right-10 {
+  margin-right: 10px;
+}
+.margin-top-20 {
+  margin-top: 20px;
+}
+.padding-bottom-90 {
+  padding-bottom: 90px;
+}
+.text-sm {
+  font-size: 12px;
+}
+.text-xn {
+  font-size: 13px;
+}
+.text-normal {
+  font-size: 14px;
+}
+.text-md {
+  font-size: 15px;
+}
+.text-ml {
+  font-size: 16px;
+}
+.text-muted {
+  color: #666666;
+}
+.text-light {
+  color: #999999;
+}
+.text-default {
+  color: #333333;
+}
+.text-primary {
+  color: #e73f40;
+}
+.padding {
+  padding: 10px;
+}
+.padding-bottom-50 {
+  padding-bottom: 50px;
+}
+.padding-left-10 {
+  padding-left: 10px;
+}
+.padding-right-10 {
+  padding-right: 10px;
+}
+.bg-white {
+  background: white;
+}
+.bg-primary {
+  background: #e73f40;
+}
+.bg-red-ball,
+.bg-blue-ball {
+  width: 20px; line-height: 20px;
+  text-align: center;
+  color: white;
+  background: red;
+  display: inline-block;
+  border-radius: 20px;
+  font-size: 12px;
+}
+.bg-blue-ball {
+  background: blue;
+}
+
+/**
+ * Grid
+ * http://cdn.bootcss.com/ionic/1.3.2/css/ionic.css
+ * --------------------------------------------------
+ * Using flexbox for the grid, inspired by Philip Walton:
+ * http://philipwalton.github.io/solved-by-flexbox/demos/grids/
+ * By default each .col within a .row will evenly take up
+ * available width, and the height of each .col with take
+ * up the height of the tallest .col in the same .row.
+ */
+.row {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%; }
+
+.row-wrap {
+  -webkit-flex-wrap: wrap;
+  -moz-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap; }
+
+.row-no-padding {
+  padding: 0; }
+.row-no-padding > .col {
+  padding: 0; }
+
+.row + .row {
+  margin-top: -5px;
+  padding-top: 0; }
+
+.col {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -moz-box-flex: 1;
+  -moz-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  display: block;
+  width: 100%; }
+
+/* Vertically Align Columns */
+/* .row-* vertically aligns every .col in the .row */
+.row-top {
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  -webkit-align-items: flex-start;
+  -moz-align-items: flex-start;
+  align-items: flex-start; }
+
+.row-bottom {
+  -webkit-box-align: end;
+  -ms-flex-align: end;
+  -webkit-align-items: flex-end;
+  -moz-align-items: flex-end;
+  align-items: flex-end; }
+
+.row-center {
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  align-items: center; }
+
+.row-stretch {
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  -webkit-align-items: stretch;
+  -moz-align-items: stretch;
+  align-items: stretch; }
+
+.row-baseline {
+  -webkit-box-align: baseline;
+  -ms-flex-align: baseline;
+  -webkit-align-items: baseline;
+  -moz-align-items: baseline;
+  align-items: baseline; }
+
+/* .col-* vertically aligns an individual .col */
+.col-top {
+  -webkit-align-self: flex-start;
+  -moz-align-self: flex-start;
+  -ms-flex-item-align: start;
+  align-self: flex-start; }
+
+.col-bottom {
+  -webkit-align-self: flex-end;
+  -moz-align-self: flex-end;
+  -ms-flex-item-align: end;
+  align-self: flex-end; }
+
+.col-center {
+  -webkit-align-self: center;
+  -moz-align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center; }
+
+/* Column Offsets */
+.col-offset-10 {
+  margin-left: 10%; }
+
+.col-offset-20 {
+  margin-left: 20%; }
+
+.col-offset-25 {
+  margin-left: 25%; }
+
+.col-offset-33, .col-offset-34 {
+  margin-left: 33.3333%; }
+
+.col-offset-50 {
+  margin-left: 50%; }
+
+.col-offset-66, .col-offset-67 {
+  margin-left: 66.6666%; }
+
+.col-offset-75 {
+  margin-left: 75%; }
+
+.col-offset-80 {
+  margin-left: 80%; }
+
+.col-offset-90 {
+  margin-left: 90%; }
+
+/* Explicit Column Percent Sizes */
+/* By default each grid column will evenly distribute */
+/* across the grid. However, you can specify individual */
+/* columns to take up a certain size of the available area */
+.col-10 {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 10%;
+  -moz-box-flex: 0;
+  -moz-flex: 0 0 10%;
+  -ms-flex: 0 0 10%;
+  flex: 0 0 10%;
+  max-width: 10%; }
+.col-15 {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 15%;
+  -moz-box-flex: 0;
+  -moz-flex: 0 0 15%;
+  -ms-flex: 0 0 15%;
+  flex: 0 0 15%;
+  max-width: 15%; }
+.col-20 {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 20%;
+  -moz-box-flex: 0;
+  -moz-flex: 0 0 20%;
+  -ms-flex: 0 0 20%;
+  flex: 0 0 20%;
+  max-width: 20%; }
+
+.col-25 {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 25%;
+  -moz-box-flex: 0;
+  -moz-flex: 0 0 25%;
+  -ms-flex: 0 0 25%;
+  flex: 0 0 25%;
+  max-width: 25%; }
+
+.col-30 {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 30%;
+  -moz-box-flex: 0;
+  -moz-flex: 0 0 30%;
+  -ms-flex: 0 0 30%;
+  flex: 0 0 30%;
+  max-width: 30%; }
+
+.col-33, .col-34 {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 33.3333%;
+  -moz-box-flex: 0;
+  -moz-flex: 0 0 33.3333%;
+  -ms-flex: 0 0 33.3333%;
+  flex: 0 0 33.3333%;
+  max-width: 33.3333%; }
+
+.col-40 {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 40%;
+  -moz-box-flex: 0;
+  -moz-flex: 0 0 40%;
+  -ms-flex: 0 0 40%;
+  flex: 0 0 40%;
+  max-width: 40%; }
+.col-45 {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 45%;
+  -moz-box-flex: 0;
+  -moz-flex: 0 0 45%;
+  -ms-flex: 0 0 45%;
+  flex: 0 0 45%;
+  max-width: 45%; }
+
+.col-50 {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 50%;
+  -moz-box-flex: 0;
+  -moz-flex: 0 0 50%;
+  -ms-flex: 0 0 50%;
+  flex: 0 0 50%;
+  max-width: 50%; }
+
+.col-60 {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 60%;
+  -moz-box-flex: 0;
+  -moz-flex: 0 0 60%;
+  -ms-flex: 0 0 60%;
+  flex: 0 0 60%;
+  max-width: 60%; }
+
+.col-66, .col-67 {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 66.6666%;
+  -moz-box-flex: 0;
+  -moz-flex: 0 0 66.6666%;
+  -ms-flex: 0 0 66.6666%;
+  flex: 0 0 66.6666%;
+  max-width: 66.6666%; }
+
+.col-70 {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 70%;
+  -moz-box-flex: 0;
+  -moz-flex: 0 0 70%;
+  -ms-flex: 0 0 70%;
+  flex: 0 0 70%;
+  max-width: 70%; }
+
+.col-75 {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 75%;
+  -moz-box-flex: 0;
+  -moz-flex: 0 0 75%;
+  -ms-flex: 0 0 75%;
+  flex: 0 0 75%;
+  max-width: 75%; }
+
+.col-80 {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 80%;
+  -moz-box-flex: 0;
+  -moz-flex: 0 0 80%;
+  -ms-flex: 0 0 80%;
+  flex: 0 0 80%;
+  max-width: 80%; }
+
+.col-90 {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 90%;
+  -moz-box-flex: 0;
+  -moz-flex: 0 0 90%;
+  -ms-flex: 0 0 90%;
+  flex: 0 0 90%;
+  max-width: 90%; }
+
+button.mint-msgbox-confirm{
+  color: #e73f40;
+}
+/*弹窗默认覆盖*/

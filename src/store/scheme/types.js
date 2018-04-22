@@ -1,0 +1,2 @@
+export const GET_SCHEME_CONFIRM = 'GET_SCHEME_CONFIRM'; // 获取方案确认
+export const SCHEME_CONFIRM_EXPIRED = 'SCHEME_CONFIRM_EXPIRED'; // 方案订单过期

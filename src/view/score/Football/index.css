@@ -1,0 +1,177 @@
+.underway, .not-started, .finished {
+  margin-bottom: 10px;
+  background-color: white;
+}
+
+.underway > div, .not-started > div, .finished > div {
+  position: relative;
+  padding: 10px 0 0 0;
+  border-radius: 5px;
+}
+
+.body-container {
+  margin-top: 10px;
+}
+
+.body-container .describe {
+  width: 17.5%;
+  position: relative;
+  color: #888888;
+  font-size: 13.5px;
+  text-align: center;
+}
+
+.game-name {
+  font-size: 14px;
+  font-weight: 600;
+  width: 43%
+}
+
+.game-name .item {
+  position: relative;
+  height: 0.88rem;
+}
+
+.game-name .item span {
+  float: left;
+  line-height: 120%;
+}
+
+.game-name .score1 {
+  display: inline-block;
+  width: 19.78%;
+  text-align: center;
+}
+
+/*比分*/
+.game-name .name {
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #363636;
+}
+
+.game-name .placard {
+  display: inline-block;
+  text-align: center;
+  width: 7.3%;
+  margin-left: 1.5%;
+  border-radius: 10%;
+}
+
+/**/
+/*比赛赔率*/
+.game-odds {
+  position: relative;
+  height: 1.76rem;
+  width: 38.2%;
+  text-align: center;
+}
+
+.game-odds .item2 {
+  height: 0.88rem;
+  margin: 0;
+}
+
+.game-odds .item2 div {
+  display: inline-block;
+  font-size: 12px;
+  width: 20%;
+  line-height: .42rem;
+}
+
+.game-odds .item2 .score-x1 {
+  text-align: right;
+}
+
+.game-odds .item2 .score-x1 div {
+  width: auto;
+  border-radius: 7px;
+  padding: 0 0.09rem;
+}
+
+.game-odds .item2 .body2 {
+  color: #9b9b9b;
+}
+
+.game-odds .item {
+  height: 0.88rem;
+  margin: 0;
+}
+
+.game-odds .item div {
+  display: inline-block;
+  font-size: 14px;
+  line-height: .42rem;
+}
+
+.game-odds .item .body {
+  width: 33.3%;
+  color: #a4a4a4;
+}
+
+/*红牌*/
+.back-yellow {
+  background-color: #ffc844;
+  color: white;
+}
+
+.back-red {
+  background-color: #e73f40;
+  color: white;
+}
+
+.shoot {
+  display: inline-block;
+  background-position: center;
+}
+
+.body2 {
+  color: #8888;
+}
+
+/**/
+.color333 {
+  color: #333333;
+}
+
+.backFed223 {
+  background-color: #fed223;
+  color: white;
+}
+
+.back41b43b {
+  background-color: #41b43b;
+  color: white;
+}
+
+.maxWidth80 {
+  max-width: 80%;
+}
+
+.maxWidth62 {
+  max-width: 62%;
+}
+
+/*黄牌*/
+.back-green {
+  background-color: #41b43b;
+  color: white;
+}
+
+.color60a839 {
+  color: #60a839;
+}
+
+.color4a4a4a {
+  color: #a4a4a4;
+}
+
+.color734f40 {
+  color: #e73f40;
+}
+
+.color9292 {
+  color: #929292;
+}
