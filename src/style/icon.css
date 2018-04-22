@@ -1,0 +1,212 @@
+.back-icon {
+  width: 9px; height: 15px;
+  background: url("../assets/icon/back.png") no-repeat;
+  background-size: 100% 100%;
+}
+.arrow-right {
+  width: 7px; height: 12px;
+  background: url("../assets/icon/arrow_right.png") no-repeat;
+  background-size: 100% 100%;
+}
+.win-icon {
+  width: 70px; height: 35px;
+  background: url("../assets/icon/win.png") no-repeat;
+  background-size: 100% 100%;
+}
+.no-win-icon {
+  width: 70px; height: 35px;
+  background: url("../assets/icon/no_win.png") no-repeat;
+  background-size: 100% 100%;
+}
+.refund-icon {
+  width: 70px; height: 55px;
+  background: url("../assets/icon/refund.png") no-repeat;
+  background-size: 100% 100%;
+}
+.order-content-icon {
+  width: 20px; height: 20px;
+  background: url("../assets/icon/order_content.png") no-repeat;
+  background-size: 100% 100%;
+}
+.order-scheme-icon {
+  width: 20px; height: 20px;
+  background: url("../assets/icon/order_scheme.png") no-repeat;
+  background-size: 100% 100%;
+}
+.red-check-icon {
+  width: 12px; height: 9px;
+  background: url("../assets/icon/red_check.png") no-repeat;
+  background-size: 100% 100%;
+}
+.scheme-line-icon {
+  width: 100%; height: 2px;
+  background: url("../assets/scheme_box_line.png") no-repeat;
+  background-size: 100% 100%;
+}
+.green-complete-icon {
+  width: 50px; height: 35px;
+  background: url("../assets/icon/complete.png") no-repeat;
+  background-size: 100% 100%;
+}
+.user-vip-icon-1 {
+  width: 20px; height: 20px;
+  background: url("../assets/icon/vip1.png");
+  background-size: 100% 100%;
+}
+.user-vip-icon-2 {
+  width: 20px; height: 20px;
+  background: url("../assets/icon/vip2.png");
+  background-size: 100% 100%;
+}
+.user-vip-icon-3 {
+  width: 20px; height: 20px;
+  background: url("../assets/icon/vip3.png");
+  background-size: 100% 100%;
+}
+.user-vip-icon-4 {
+  width: 20px; height: 20px;
+  background: url("../assets/icon/vip4.png");
+  background-size: 100% 100%;
+}
+.mine-recharge-icon {
+  width: 20px; height: 20px;
+  background: url("../assets/icon/mine_recharge.png") no-repeat;
+  background-size: 100% 100%;
+}
+.mine-cash-icon {
+  width: 20px; height: 20px;
+  background: url("../assets/icon/mine_cash.png") no-repeat;
+  background-size: 100% 100%;
+}
+.mine-order-icon {
+  width: 20px; height: 20px;
+  background: url("../assets/icon/mine_order.png") no-repeat;
+  background-size: 100% 100%;
+}
+.mine-info-icon {
+  width: 20px; height: 20px;
+  background: url("../assets/icon/mine_info.png") no-repeat;
+  background-size: 100% 100%;
+}
+.userInfo-IDCard-icon {
+  width: 20px; height: 20px;
+  background: url("../assets/icon/userInfo_IDCard.png") no-repeat;
+  background-size: 100% 100%;
+}
+.userInfo-bankCard-icon {
+  width: 20px; height: 20px;
+  background: url("../assets/icon/userInfo_bankCard.png") no-repeat;
+  background-size: 100% 100%;
+}
+.dialog-close-icon {
+  width: 15px; height: 15px;
+  background: url("../assets/icon/close.png") no-repeat;
+  background-size: 100% 100%;
+}
+.order-expired-icon {
+  width: 100px; height: 75px;
+  background: url("../assets/icon/order_expired.png") no-repeat;
+  background-size: 100% 100%;
+}
+.red-pack-check-icon {
+  width: 20px; height: 20px;
+  background: url("../assets/icon/redpack_check.png");
+  background-size: 100% 100%;
+}
+.arrow-bottom-icon {
+  width: 12px; height: 8px;
+  background: url("../assets/icon/arrow_bottom.png") no-repeat;
+  background-size: 100% 100%;
+}
+.arrow-circle-up-icon {
+  width: 18px; height: 18px;
+  background: url("../assets/icon/arrow_circle_up.png") no-repeat;
+  background-size: 100% 100%;
+}
+.prize-time-icon {
+  width: 50px; height: 55px;
+  background: url("../assets/icon/prize_time.png");
+  background-size: 100% 100%;
+  color: black;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 15px 5px 0 5px;
+  text-align: center;
+}
+.football-assist-icon {
+  width: 15px; height: 15px;
+  background: url("../assets/information/assist.png") no-repeat;
+  background-size: 100% 100%;
+}
+.football-ic-icon {
+  width: 15px; height: 15px;
+  background: url("../assets/information/ic_football.png") no-repeat;
+  background-size: 100% 100%;
+}
+.football-penalty-icon {
+  width: 15px; height: 15px;
+  background: url("../assets/information/penalty.png") no-repeat;
+  background-size: 100% 100%;
+}
+.football-oolong-icon {
+  width: 15px; height: 15px;
+  background: url("../assets/information/oolong.png") no-repeat;
+  background-size: 100% 100%;
+}
+.football-yellow-red-icon {
+  width: 15px; height: 15px;
+  background: url("../assets/information/yellow_to_red.png") no-repeat;
+  background-size: 100% 100%;
+}
+.football-ic-decline-icon {
+  width: 10px; height: 15px;
+  background: url("../assets/information/ic_decline.png") no-repeat;
+  background-size: 100% 100%;
+}
+.football-ic-rise-icon {
+  width: 10px; height: 15px;
+  background: url("../assets/information/ic_rise.png") no-repeat;
+  background-size: 100% 100%;
+}
+.k3-1-icon {
+  width: 25px; height: 25px;
+  background: url("../assets/icon/k3_1.png") no-repeat;
+  background-size: 100% 100%;
+}
+.k3-2-icon {
+  width: 25px; height: 25px;
+  background: url("../assets/icon/k3_2.png") no-repeat;
+  background-size: 100% 100%;
+}
+.k3-3-icon {
+  width: 25px; height: 25px;
+  background: url("../assets/icon/k3_3.png") no-repeat;
+  background-size: 100% 100%;
+}
+.k3-4-icon {
+  width: 25px; height: 25px;
+  background: url("../assets/icon/k3_4.png") no-repeat;
+  background-size: 100% 100%;
+}
+.k3-5-icon {
+  width: 25px; height: 25px;
+  background: url("../assets/icon/k3_5.png") no-repeat;
+  background-size: 100% 100%;
+}
+.k3-6-icon {
+  width: 25px; height: 25px;
+  background: url("../assets/icon/k3_6.png") no-repeat;
+  background-size: 100% 100%;
+}
+.activate-stick {
+  background: url("../assets/icon/act_stick.png") no-repeat;
+  background-size: 100% ;
+}
+.del-stick{
+  background: url("../assets/icon/delete_stick.png") no-repeat;
+  background-size: 100% ;
+}
+.pushpin-icon{
+  background: url("../assets/icon/pushpin.png") no-repeat;
+  background-size: 100% ;
+}
