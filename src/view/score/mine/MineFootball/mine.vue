@@ -1,8 +1,8 @@
 <template>
   <div>
     <div class="organ-item"
-         v-for="groups in propsData"
-         :key="groups.date_timestamp">
+         v-for="(groups,index) in groupsList"
+         :key="index*2">
       <div class="bg-white organ-item-title"
            @click="show(groups.date_timestamp)">
         <span class="left">{{ groups.name||groups.date }}</span>
@@ -10,8 +10,8 @@
       </div>
       <ul v-show="switchItem(groups.date_timestamp)"
           style="padding: 0.14rem;"
-          v-for="list in calculate(groups.list)"
-          :key="list.id">
+          v-for="(list,ind) in groups.list"
+          :key="ind*4">
         <li class="container row mine-back1">
           <div class="left football" :style="{backgroundImage:`url('${list.lottery_image}')`}"></div>
           <div class="right">
@@ -24,15 +24,20 @@
               </div>
             </div>
             <div style="line-height: 0.47rem;height: 0.47rem;">
-              <div>
-                <template v-if="list.lottery_id==20||list.lottery_id==21">
-                  <span class="green-card" v-for="i in list.jc_info">{{i.betting_order.betting_num||'-'}}</span>
-                </template>
-                <template v-else>
-                  <span class="msgSpan">{{ list.status===3?'理论奖金:':'奖金:' }}</span>
-                  <span style="font-size:15px;color: #ffb81f;font-weight: bold">{{ list.status===3? `${list.oddsMin}~${list.oddsMax}`:list.winnings_bonus }}</span>
-                  <span class="send-icon" @click="Message"></span>
-                </template>
+              <div v-if="list.lottery_id==='20'||list.lottery_id==='21'">
+                <span class="green-card"
+                      v-for="(i,index) in list.jc_info"
+                      :key="index*3"
+                      :class="{opacity50:i.result_odds&&i.result_odds.prize_num===i.betting_order.betting_num}"
+                >{{i.betting_order.betting_num||'-'}}</span>
+              </div>
+              <div v-else>
+                <span class="msgSpan" v-if="list.status<=3">理论奖金:</span>
+                <span class="msgSpan" v-else>奖金:</span>
+                <span style="font-size:15px;color: #ffb81f;font-weight: bold">
+                  {{ list.status<=3? `${list.oddsMin||''}~${list.oddsMax||''}`:list.winnings_bonus }}
+                </span>
+                <span class="send-icon" @click="Message"></span>
               </div>
             </div>
           </div>
@@ -85,16 +90,27 @@
       return {
         ShowItem: {}, // 是否显示
         rotate: false, // 旋转
-        propsDispose: []
+        propsDispose: [],
+        groupsList: []
       }
     },
-    computed: {},
+    created () {
+      this.calculate(this.propsData)
+    },
+    watch: {
+      propsData (newQuestion) {
+        this.calculate(newQuestion)
+      }
+    },
     methods: {
       ...mapActions({
         getData: GET_MINE_BET_DATA
       }),
-      calculate (...item) {
-        return new Compute(...item)
+      calculate (groups) {
+        new Compute(groups).then(response => {
+          console.log(response)
+          this.groupsList = response
+        })
       },
       Message () {
         MessageBox('', `<p class="text-left" style="line-height:0.56rem;color:#333 ">该订单相关比赛当期赛况下理论奖金范围,实际赔率有浮动,仅做参考,最终以实际中奖金额为准.<br/>奖金优化方案暂不支持理论奖金计算</p>`);

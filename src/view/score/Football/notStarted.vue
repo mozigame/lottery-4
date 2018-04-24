@@ -22,7 +22,7 @@
         </div>
         <!---->
         <div class="text-center module4" style="position: relative;height: 1.76rem;width: 38.2%;">
-          <div class="item2">
+          <div class="item2" v-if="propsData.result_odds[`602`]">
             <!--比分-->
             <div class="score-x1 text-right">
               <div :class="propsData.result_odds['602'].letPoint>0? 'back41b43b':'backFed223'"
@@ -30,13 +30,15 @@
               >{{propsData.result_odds['602'].letPoint }}
               </div>
             </div>
-            <div class="body2">{{ propsData.result_odds[`602`][`v0`] }}</div>
-            <div class="body2">{{ propsData.result_odds[`602`][`v1`] }}</div>
-            <div class="body2">{{ propsData.result_odds[`602`][`v3`] }}</div>
+            <div class="body2" :key="121">{{propsData.result_odds[`602`][`v3`]}}</div>
+            <div class="body2" :key="111">{{propsData.result_odds[`602`][`v1`]}}</div>
+            <div class="body2" :key="101">{{propsData.result_odds[`602`][`v0`]}}</div>
           </div>
-          <div class="item2">
+          <div class="item2" v-if="propsData.result_odds[`601`]">
             <div class="score-x1"></div>
-            <div class="body2" v-for="i of propsData.result_odds[`601`]">{{ i }}</div>
+            <div class="body2" :key="2">{{propsData.result_odds[`601`][`v3`]}}</div>
+            <div class="body2" :key="1">{{propsData.result_odds[`601`][`v1`]}}</div>
+            <div class="body2" :key="0">{{propsData.result_odds[`601`][`v0`]}}</div>
           </div>
         </div>
       </div>

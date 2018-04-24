@@ -29,7 +29,7 @@ const mutations = {
     // 增加置顶
     let delData
     const sta = `${state.lotteryType}${state.lotteryState}`
-    console.log(del, index, state)
+    // console.log(del, index, state)
     let data = JSON.parse(JSON.stringify(state[sta]))
     if (del) {
       // 置顶
@@ -51,9 +51,24 @@ const mutations = {
     state.lotteryType = params[0]
     state.lotteryState = params[1]
   },
-  [types.SET_LOTTERY_1] (state, {target, params}) {
+  [types.SET_LOTTERY_1] (state, {target, params, add}) {
     // 设置数据
-    state[`${target[0]}${target[1]}`] = JSON.parse(JSON.stringify(params));
+    if (add) {
+      if (params.groups.length === 0) {
+        return
+      }
+      let data = JSON.parse(JSON.stringify(state[`${target[0]}${target[1]}`]))
+      if (data.groups[data.groups.length - 1].date_timestamp === params.groups[0].date_timestamp) {
+        let list = params.groups.shift()
+        data.groups[data.groups.length - 1].list.push(...list.list)
+      }
+      params.groups.forEach(append => {
+        data.groups.push(append)
+      })
+      state[`${target[0]}${target[1]}`] = data;
+    } else {
+      state[`${target[0]}${target[1]}`] = params;
+    }
   },
   [types.TO_THE_TOP_INIT] (state, {target, params}) {
     // 设置置顶数据

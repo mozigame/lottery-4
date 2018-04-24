@@ -1,12 +1,12 @@
 <template>
   <div>
-    <div class="organ-item" v-for="groups in propsData" :key="groups.date_timestamp">
+    <div class="organ-item" v-for="groups in groupsList" :key="groups.date_timestamp">
       <div v-if="groups.name||groups.date" class="bg-white organ-item-title" @click="show(groups.date_timestamp)">
         <span class="left">{{ groups.name||groups.date }}</span>
         <span class="right" :class="{bgPlay:switchItem(groups.date_timestamp)}"> </span>
       </div>
       <div>
-        <ul v-show="switchItem(groups.date_timestamp)" style="padding: 0.14rem;" v-for="list in calculate(groups.list)"
+        <ul v-show="switchItem(groups.date_timestamp)" style="padding: 0.14rem;" v-for="list in groups.list"
             :key="list.id">
           <li class="container row mine-back2">
             <div class="left football" :style="{backgroundImage:`url('${list.lottery_image}')`}"></div>
@@ -19,9 +19,12 @@
                 </div>
               </div>
               <div style="line-height: 0.47rem;height: 0.47rem;">
-                  <span class="msgSpan">{{ list.status===3?'理论奖金:':'奖金:' }}</span>
-                  <span style="font-size:15px;color: #ffb81f;font-weight: bold">{{ list.status===3? `${list.oddsMin}~${list.oddsMax}`:list.winnings_bonus }}</span>
-                  <span class="send-icon" @click="Message"></span>
+                <span class="msgSpan" v-if="list.status<=3">理论奖金:</span>
+                <span class="msgSpan" v-else>奖金:</span>
+                <span style="font-size:15px;color: #ffb81f;font-weight: bold">
+                  {{ list.status<=3? `${list.oddsMin}~${list.oddsMax}`:list.winnings_bonus }}
+                </span>
+                <span class="send-icon" @click="Message"></span>
               </div>
             </div>
           </li>
@@ -72,15 +75,27 @@
     data () {
       return {
         ItemName: '置顶比赛', // 标题名字
-        ShowItem: {} // 是否显示
+        ShowItem: {}, // 是否显示
+        groupsList: []
+      }
+    },
+    created () {
+      this.calculate(this.propsData)
+    },
+    watch: {
+      propsData (newQuestion) {
+        this.calculate(newQuestion)
       }
     },
     methods: {
       ...mapActions({
         getData: GET_MINE_BET_DATA
       }),
-      calculate (...item) {
-        return new Compute(...item)
+      calculate (groups) {
+        new Compute(groups).then(response => {
+          console.log(response)
+          this.groupsList = response
+        })
       },
       Message () {
         MessageBox('', `<p class="text-left" style="line-height:0.56rem;color:#333 ">该订单相关比赛当期赛况下理论奖金范围,实际赔率有浮动,仅做参考,最终以实际中奖金额为准.<br/>奖金优化方案暂不支持理论奖金计算</p>`);
@@ -167,7 +182,7 @@
 
   .msgSpan {
     display: inline-block;
-     color: #b6b5b5;
+    color: #b6b5b5;
     margin: 0 0.5em;
   }
 

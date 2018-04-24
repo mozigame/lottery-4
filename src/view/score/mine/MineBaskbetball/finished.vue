@@ -18,7 +18,7 @@
           <div style="float: right;width:2%;height: 1.23rem;background-color: #ddd"></div>
         </div>
         <!---->
-        <div style="width: 67%">
+        <div @click="$emit('go',propsData.third_party_schedule_id)" style="width: 67%">
           <div class="module3" style="font-size: 0.36rem;font-weight: 600;width:64%">
             <div class="item">
               <span class="score1 color734f40">{{ scoreArray(0) }}</span>

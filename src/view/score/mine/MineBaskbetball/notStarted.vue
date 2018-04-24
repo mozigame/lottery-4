@@ -1,16 +1,17 @@
 <template>
-  <div class="bg-white" >
+  <div class="bg-white">
     <div style="position: relative;padding:0.26rem 0 0 0;border-radius: 5px;">
       <module1
         :data="[weekDay(propsData.first_half_begin_time,1),propsData.round_no,propsData.league,weekDay(propsData.first_half_begin_time,2)]"/>
-      <div @click="$emit('go',propsData.third_party_schedule_id)" class="row" style="margin: 0.34rem 0 0 0;">
-        <div class="text-center color9292" style="width: 12.7%;color:#888888;font-size: 0.36rem;">
+      <div class="row" style="margin: 0.34rem 0 0 0;">
+        <div @click="$emit('go',propsData.third_party_schedule_id)" class="text-center color9292"
+             style="width: 12.7%;color:#888888;font-size: 0.36rem;">
           <div style="line-height:1.23rem;border-right: 1px solid #ddd;">
             {{ propsData.match_status_description }}
           </div>
         </div>
         <!---->
-        <div style="width: 67%">
+        <div @click="$emit('go',propsData.third_party_schedule_id)" style="width: 67%">
           <div class="module3" style="font-size: 0.36rem;font-weight: 600;width: 64%;">
             <div class="item">
               <span class="score1 color4a4a4a">-</span>
@@ -22,7 +23,6 @@
             </div>
           </div>
         </div>
-
         <!---->
         <example style="width: 20%;" :jc-info="jcInfo"/>
 

@@ -2,16 +2,23 @@
   <div style="position: relative;height: 1.76rem;">
     <div @click="show" class="body" style="height: 1.76rem;overflow: hidden">
       <div v-if="downShow" style="height: 1.23rem">
-        <div v-for="(i,index) in showItem" :key="index" class="text-center item">
-          <div class="c">{{i.txt}}</div>
-          <div class="ccolor73f40">{{i.odds?`(${i.odds})`:null}}</div>
+        <div v-for="(i,index) in showItem"
+             :key="index"
+             class="text-center item"
+        >
+          <div>{{i.txt}}{{ i.colorRed }}</div>
+          <div>{{i.odds?`(${i.odds})`:null}}</div>
         </div>
       </div>
       <div v-else class="row" style="height: 1.23rem">
         <div class="col-center" style="width: 100%">
-          <div v-for="(i,index) in showItem" :key="index" class="text-center item">
-            <div class="c">{{i.txt}}</div>
-            <div class="ccolor73f40">{{i.odds?`(${i.odds})`:null}}</div>
+          <div v-for="(i,index) in showItem"
+               :key="index"
+               class="text-center item"
+               :class="{color73f40:((jcInfo.lottery_id === '20' || jcInfo.lottery_id === '21')&&i.colorRed)}"
+          >
+            <div>{{i.txt}}</div>
+            <div>{{i.odds?`(${i.odds})`:null}}</div>
           </div>
         </div>
       </div>
@@ -23,7 +30,7 @@
         </div>
       </div>
       <div v-show="down" class="down-gray-details">
-        <div class="body">
+        <div @click="show" class="body">
           <div v-for="(item,key) in jcInfo.betTxt" :key="key">
             <div v-for="(i,index) in item" :key="index" class="text-center item borderBottom">
               <div class="color333">{{i.txt}}</div>
@@ -51,15 +58,20 @@
     computed: {
       showItem () {
         let arr = []
-        if (this.jcInfo.betTxt.some(item => {
+        const isBig2 = this.jcInfo.betTxt.some(item => {
           if (item.length > 2) {
             item.length = 2
           }
+          if (this.jcInfo.lottery_id === '20' || this.jcInfo.lottery_id === '21') {
+            item[0].colorRed = this.jcInfo.result_odds && this.jcInfo.result_odds.prize_num === this.jcInfo.betting_order.betting_num
+          }
           arr.push(...item)
           return arr.length >= 2
-        })) {
+        })
+        if (isBig2) {
           this.downShow = true
         }
+        // console.log(arr)
         return arr
       }
     },

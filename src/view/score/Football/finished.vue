@@ -9,7 +9,9 @@
           <div style="float: left;width: 98%;">
             <div class="row">
               <div class="col-center" style="width: 100%">
-                <div style="font-weight: 400;margin-top: 0.25rem;line-height: 100%">{{ propsData.match_status_description}}</div>
+                <div style="font-weight: 400;margin-top: 0.25rem;line-height: 100%">{{
+                  propsData.match_status_description}}
+                </div>
                 <div style="font-size: 0.3rem;margin-top: 0.25rem;line-height: 100%">半场 {{ propsData.half_score }}</div>
               </div>
             </div>
@@ -39,20 +41,22 @@
         </div>
         <!---->
         <div class="text-center module4" style="position: relative;height: 1.76rem;width: 38.2%;">
-          <div class="item2">
+          <div class="item2" v-if="propsData.result_odds[`602`]">
             <div class="score-x1 text-right">
               <div :class="propsData.result_odds['602'].letPoint>=1? 'back41b43b':'backFed223'"
                    style="width: auto;border-radius: 7px;padding: 0 0.09rem;"
               >{{propsData.result_odds['602'].letPoint }}
               </div>
             </div>
-            <div class="body2">{{ propsData.result_odds[`602`][`v0`] }}</div>
-            <div class="body2">{{ propsData.result_odds[`602`][`v1`] }}</div>
-            <div class="body2">{{ propsData.result_odds[`602`][`v3`] }}</div>
+            <div :class="propsData.result_odds.game602===3?'color734f40':'body2'" :key="2">{{propsData.result_odds[`602`][`v3`]}}</div>
+            <div :class="propsData.result_odds.game602===1?'color734f40':'body2'" :key="1">{{propsData.result_odds[`602`][`v1`]}}</div>
+            <div :class="propsData.result_odds.game602===0?'color734f40':'body2'" :key="0">{{propsData.result_odds[`602`][`v0`]}}</div>
           </div>
-          <div class="item2">
+          <div class="item2" v-if="propsData.result_odds[`601`]">
             <div class="score-x1"></div>
-            <div class="body2" v-for="i of propsData.result_odds[`601`]">{{ i }}</div>
+            <div :class="propsData.result_odds.game601===3?'color734f40':'body2'" :key="5">{{propsData.result_odds[`601`][`v3`]}}</div>
+            <div :class="propsData.result_odds.game601===1?'color734f40':'body2'" :key="4">{{propsData.result_odds[`601`][`v1`]}}</div>
+            <div :class="propsData.result_odds.game601===0?'color734f40':'body2'" :key="3">{{propsData.result_odds[`601`][`v0`]}}</div>
           </div>
         </div>
       </div>
@@ -71,10 +75,6 @@
     props: {
       propsData: {type: Object},
       groupsIndex: {type: Array}
-    },
-    components: {
-      module1,
-      IsTop
     },
     filters: {
       scoreShow: function (value) {
@@ -110,6 +110,10 @@
         }
         return `${check(data.getMonth() + 1)}-${check(data.getDate())} ${check(data.getHours())}:${check(data.getMinutes())}`
       }
+    },
+    components: {
+      module1,
+      IsTop
     }
   }
 </script>
