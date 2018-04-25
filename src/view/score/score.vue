@@ -191,7 +191,7 @@
     <div
       v-infinite-scroll="loadMore"
       infinite-scroll-disabled="orders.loading"
-      infinite-scroll-distance="10"
+      infinite-scroll-distance="1"
       infinite-scroll-immediate-check="false"
       :class="{paddingBottom1:isMine([lotteryType,lotteryState])}"
     >
@@ -218,7 +218,7 @@
   import { Popup } from 'mint-ui';
   import container from './container.vue'
   import loading from '../../common/loading';
-  import SportsLotteryJcInfo from '../../model/sports/SportsLotteryJcInfo';
+  import Compute from './components/compute.js'
 
   export default {
     name: 'Score',
@@ -252,10 +252,8 @@
         if (target.length) {
           // 切换
           if (this.isMine(target)) {
-            // console.log('我的投注', target)
             this.getMineData(target)
           } else {
-            // console.log('不是', target)
             if (target[0] === 2 && target[0] === this.lotteryType && target[1] === 1 && target[1] === this.lotteryState) {
               this.popupVisible = !this.popupVisible
             } else {
@@ -266,10 +264,8 @@
           // 点击刷新
           target.push(this.lotteryType, this.lotteryState)
           if (this.isMine(target)) {
-            // console.log('我的投注', target)
             this.getMineData(target)
           } else {
-            // console.log('不是', target)
             this.getGameData(target)
           }
         }
@@ -318,13 +314,20 @@
         let push = {id: `${target[0]}${target[1]}`, offset: target[2]}
         loading.show();
         this.getMineGameList(push).then(data => {
-          data = this.mineDisposeF(data)
-          this.setLottery({target, params: data, add: target[2]});
-          this.switchover(target);
-          if (!data.groups || !data.groups.length && !target[2]) {
-            this.showToB = true;
-          }
-          loading.hide()
+          new Compute(data).then(resolve => {
+            this.setLottery({target, params: resolve, add: target[2]});
+            this.switchover(target);
+            if (!resolve.groups || !resolve.groups.length && !target[2]) {
+              this.showToB = true;
+            }
+            loading.hide()
+          })
+          // this.setLottery({target, params: data, add: target[2]});
+          // this.switchover(target);
+          // if (!data.groups || !data.groups.length && !target[2]) {
+          //   this.showToB = true;
+          // }
+          // loading.hide()
         }).catch(err => {
           console.log(err)
           loading.hide()
@@ -387,22 +390,6 @@
         });
         return props
       },
-      mineDisposeF (props) {
-        props.groups = props.groups.map(groups => {
-          groups.list = groups.list.map(list => {
-            if (list.lottery_id !== '20' || list.lottery_id !== '20') {
-              list.jc_info = list.jc_info.map(info => {
-                let i = new SportsLotteryJcInfo(info, list.lottery_id);
-                console.log(JSON.parse(JSON.stringify(info)), JSON.parse(JSON.stringify(i)))
-                return info
-              })
-            }
-            return list
-          })
-          return groups
-        })
-        return props
-      },
       isMine (target = []) {
         if (!target.length) {
           return
@@ -421,7 +408,7 @@
         let i = 0;
         if (this.isMine([this.lotteryType, this.lotteryState])) {
           item = this.$store.state.score[`${this.lotteryType}${this.lotteryState}`];
-          console.log(item)
+          // console.log(item)
           item.groups.forEach(inx => {
             i += inx.list.length
           });

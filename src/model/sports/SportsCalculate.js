@@ -131,7 +131,7 @@ export default class SportsCalculate {
       }
       content = `${content}${CONVENT_LOTTERY_ID[`${lotteryId}`]}#${typeStr}#${value.value}/`;
     }
-    console.log(selected)
+    // console.log(selected)
     selected.forEach(value => {
       if (Object.prototype.toString.call(value) === `[object Array]`) {
         value.forEach(item => {

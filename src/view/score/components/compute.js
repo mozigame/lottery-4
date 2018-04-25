@@ -1,10 +1,11 @@
 import { LotteryFootballKey, LotteryBasketballKey, SeriesType } from '../../../store/constants.js'
 import SportsCalculate from '../../../model/sports/SportsCalculate'
 import Util from '../../../common/util';
+import SportsLotteryJcInfo from '../../../model/sports/SportsLotteryJcInfo';
 
 export default class compute {
   constructor (groups) {
-    this.groups = JSON.parse(JSON.stringify(groups))
+    this.groups = groups
     return this.computeOdds()
   }
 
@@ -14,11 +15,16 @@ export default class compute {
       item2.betTxt = []
       let arr = item2.betting_order.betting_num.split(',')
       item2.betTxt[index] = arr.map(item3 => {
-        return {txt: item3, odds: ''}
+        return {text: item3, value: ''}
       })
       return item2
     })
     return item
+  }
+
+  isWinning (betting, value) {
+    const a = betting.find(item => item.checked && item.text === value)
+    return a
   }
 
   basketballFootball (scheduleList, jcInfo, data) {
@@ -30,27 +36,29 @@ export default class compute {
           for (let key in betContent) {
             betTxt.push(betContent[key].map(odds => {
               // 计算最大最小金额
-              let countOdds = Info.result_odds[key][odds]
+              let newOdds;
+              let checked;
+
+              const countOdds = Info.result_odds[key][odds];
+              newOdds = {id: key, key: odds, value: countOdds, text: null, checked: null};
+
               if (Util.isFootball(Info.lottery_id)) {
-                return {
-                  id: key,
-                  key: odds,
-                  value: countOdds,
-                  text: ResolveFootball(key, odds, Info),
-                  txt: ResolveFootball(key, odds, Info),
-                  odds: countOdds
-                }
+                newOdds.text = ResolveFootball(key, odds, Info)
+                checked = this.isWinning(Info.betting, ResolveFootball(key, odds, Info, 1))
               } else if (Util.isBasketball(Info.lottery_id)) {
-                return {
-                  id: key,
-                  key: odds,
-                  value: countOdds,
-                  text: ResolveBasketball(key, odds, Info),
-                  txt: ResolveBasketball(key, odds, Info),
-                  odds: countOdds
+                newOdds.text = ResolveBasketball(key, odds, Info)
+                checked = this.isWinning(Info.betting, ResolveBasketball(key, odds, Info, 1))
+              }
+
+              if (checked) {
+                if (checked.checked) {
+                  newOdds.checked = checked.checked
+                }
+                if (checked.value) {
+                  newOdds.value = checked.value
                 }
               }
-              return
+              return newOdds
             }))
           }
           return true
@@ -72,8 +80,13 @@ export default class compute {
   computeOdds () {
     let save = []
     let PromsSave = []
-    const groupsList = this.groups.map((List, indexL) => {
+    const groupsList = this.groups.groups.map((List, indexL) => {
       List.list = List.list.map((item, indexA) => {
+        item.jc_info = item.jc_info.map(info => {
+          const newInfo = new SportsLotteryJcInfo(info, info.lottery_id)
+          info = Object.assign({...info}, {...newInfo})
+          return info
+        });
         if (item.lottery_id === '20' || item.lottery_id === '21') {
           return this.sfcCompute(item)
         }
@@ -105,7 +118,8 @@ export default class compute {
             groupsList[item[0]].list[item[1]].oddsMax = 0
           }
         })
-        resolve(groupsList)
+        this.groups.groups = groupsList
+        resolve(this.groups)
       })
     })
   }
@@ -115,14 +129,18 @@ export default class compute {
   }
 }
 
-function ResolveFootball (key, odd, points) {
+function ResolveFootball (key, odd, points, is) {
   let txt = ''
   switch (key) {
     case '601':
       txt = LotteryFootballKey['betting_score_no_concede'][odd];
       break;
     case '602':
-      txt = `${LotteryFootballKey['betting_score_concede'][odd]}[${points.let_point}]`;
+      if (is) {
+        txt = `${LotteryFootballKey['betting_score_concede'][odd]}`;
+      } else {
+        txt = `${LotteryFootballKey['betting_score_concede'][odd]}[${points.let_point}]`;
+      }
       break;
     case '603':
       txt = LotteryFootballKey['betting_score_scores'][odd];
@@ -136,17 +154,21 @@ function ResolveFootball (key, odd, points) {
     default:
 
   }
-  return txt
+  return txt;
 }
 
-function ResolveBasketball (key, odd, points) {
+function ResolveBasketball (key, odd, points, is) {
   let txt = ''
   switch (key) {
     case '701':
       txt = LotteryBasketballKey['betting_score_no_concede'][odd];
       break;
     case '702':
-      txt = `${LotteryBasketballKey['betting_score_concede'][odd]}[${points.let_point}]`;
+      if (is) {
+        txt = `${LotteryBasketballKey['betting_score_concede'][odd]}`;
+      } else {
+        txt = `${LotteryBasketballKey['betting_score_concede'][odd]}[${points.let_point}]`;
+      }
       break;
     case '703':
       txt = LotteryBasketballKey['betting_score_sfc'][odd];
@@ -157,5 +179,5 @@ function ResolveBasketball (key, odd, points) {
     default:
 
   }
-  return txt
+  return txt;
 }

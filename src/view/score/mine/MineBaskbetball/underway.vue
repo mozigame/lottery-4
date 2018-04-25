@@ -62,7 +62,7 @@
             </template>
           </div>
         </div>
-        <example style="width: 20%;" :jc-info="jcInfo"/>
+        <example style="width: 20%;" :jcInfo="jcInfo"/>
       </div>
     </div>
   </div>

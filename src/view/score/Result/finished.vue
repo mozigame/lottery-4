@@ -38,7 +38,6 @@
         <!---->
       </div>
       <is-top :index="groupsIndex" :toTop="propsData.toTop"/>
-
     </div>
   </div>
 </template>

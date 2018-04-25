@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="organ-item"
-         v-for="(groups,index) in groupsList"
+         v-for="(groups,index) in propsData"
          :key="index*2">
       <div class="bg-white organ-item-title"
            @click="show(groups.date_timestamp)">
@@ -63,6 +63,7 @@
               @go="goBasketball"
               :propsData="item"
               :jcInfo="list.jc_info[index]"
+              :index="index"
             />
           </template>
         </li>
@@ -77,7 +78,6 @@
   import underway from './underway.vue'
   import finished from './finished.vue'
   import notStarted from './notStarted.vue'
-  import Compute from '../../components/compute.js'
   import { mapActions } from 'vuex'
   import { GET_MINE_BET_DATA } from '../../../../store/score/types';
 
@@ -94,24 +94,11 @@
         groupsList: []
       }
     },
-    created () {
-      this.calculate(this.propsData)
-    },
-    watch: {
-      propsData (newQuestion) {
-        this.calculate(newQuestion)
-      }
-    },
+
     methods: {
       ...mapActions({
         getData: GET_MINE_BET_DATA
       }),
-      calculate (groups) {
-        new Compute(groups).then(response => {
-          console.log(response)
-          this.groupsList = response
-        })
-      },
       Message () {
         MessageBox('', `<p class="text-left" style="line-height:0.56rem;color:#333 ">该订单相关比赛当期赛况下理论奖金范围,实际赔率有浮动,仅做参考,最终以实际中奖金额为准.<br/>奖金优化方案暂不支持理论奖金计算</p>`);
       },

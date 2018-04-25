@@ -5,9 +5,10 @@
         <div v-for="(i,index) in showItem"
              :key="index"
              class="text-center item"
+             :class="{color73f40:i.checked}"
         >
-          <div>{{i.txt}}{{ i.colorRed }}</div>
-          <div>{{i.odds?`(${i.odds})`:null}}</div>
+          <div>{{i.text}}{{ i.colorRed }}</div>
+          <div>{{i.value?`(${i.value})`:null}}</div>
         </div>
       </div>
       <div v-else class="row" style="height: 1.23rem">
@@ -15,10 +16,10 @@
           <div v-for="(i,index) in showItem"
                :key="index"
                class="text-center item"
-               :class="{color73f40:((jcInfo.lottery_id === '20' || jcInfo.lottery_id === '21')&&i.colorRed)}"
+               :class="{color73f40:i.checked}"
           >
-            <div>{{i.txt}}</div>
-            <div>{{i.odds?`(${i.odds})`:null}}</div>
+            <div>{{i.text}}</div>
+            <div>{{i.value?`(${i.value})`:null}}</div>
           </div>
         </div>
       </div>
@@ -31,10 +32,13 @@
       </div>
       <div v-show="down" class="down-gray-details">
         <div @click="show" class="body">
-          <div v-for="(item,key) in jcInfo.betTxt" :key="key">
-            <div v-for="(i,index) in item" :key="index" class="text-center item borderBottom">
-              <div class="color333">{{i.txt}}</div>
-              <div class="color888">{{i.odds?`(${i.odds})`:null}}</div>
+          <div v-for="(item,key) in jcInfo.betTxt" :key="`${item.id}${key}`">
+            <div v-for="i in item"
+                 :key="i.text"
+                 class="text-center item borderBottom"
+            >
+              <div :class="i.checked? 'color73f40':'color333'">{{i.text}}</div>
+              <div :class="i.checked? 'color73f40':'color888'">{{i.value?`(${i.value})`:null}}</div>
             </div>
           </div>
         </div>
@@ -57,13 +61,17 @@
     },
     computed: {
       showItem () {
+        const betTxt = JSON.parse(JSON.stringify(this.jcInfo.betTxt))
         let arr = []
-        const isBig2 = this.jcInfo.betTxt.some(item => {
-          if (item.length > 2) {
-            item.length = 2
+        const isBig2 = betTxt.some(item => {
+          if (!item && Object.prototype.toString.call(item) !== `[object Array]`) {
+            return
           }
           if (this.jcInfo.lottery_id === '20' || this.jcInfo.lottery_id === '21') {
-            item[0].colorRed = this.jcInfo.result_odds && this.jcInfo.result_odds.prize_num === this.jcInfo.betting_order.betting_num
+            item[0].checked = this.jcInfo.result_odds && this.jcInfo.result_odds.prize_num === this.jcInfo.betting_order.betting_num
+          }
+          if (item.length > 2) {
+            item.length = 2
           }
           arr.push(...item)
           return arr.length >= 2
@@ -71,7 +79,6 @@
         if (isBig2) {
           this.downShow = true
         }
-        // console.log(arr)
         return arr
       }
     },

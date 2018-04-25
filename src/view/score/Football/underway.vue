@@ -13,16 +13,16 @@
           <div class="item">
             <span class="score1 color60a839">{{ scoreArray(0)}}</span>
             <span class="name maxWidth62">{{ propsData.home }}</span>
-            <span v-if="propsData.home_info.red_card>0"
+            <span v-if="propsData.home_info&&propsData.home_info.red_card>0"
                   class="placard back-red">{{ propsData.home_info.red_card }}</span>
-            <span v-if="propsData.home_info.yellow_card>0" class="placard back-yellow">{{ propsData.home_info.yellow_card }}</span>
+            <span v-if="propsData.home_info&&propsData.home_info.yellow_card>0" class="placard back-yellow">{{ propsData.home_info.yellow_card }}</span>
           </div>
           <div class="item">
             <span class="score1 color60a839">{{ scoreArray(1) }}</span>
             <span class="name maxWidth62">{{ propsData.guest }}</span>
-            <span v-if="propsData.guest_info.red_card>0"
+            <span v-if="propsData.guest_info&&propsData.guest_info.red_card>0"
                   class="placard back-red">{{ propsData.guest_info.red_card }}</span>
-            <span v-if="propsData.guest_info.yellow_card>0"
+            <span v-if="propsData.guest_info&&propsData.guest_info.yellow_card>0"
                   class="placard back-yellow">{{ propsData.guest_info.yellow_card }}</span>
           </div>
         </div>

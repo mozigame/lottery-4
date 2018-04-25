@@ -22,6 +22,7 @@
 
   .not-logged-in .col-center {
     width: 50%;
+    margin-top: 50%;
     margin: 0 auto;
     text-align: center;
   }
